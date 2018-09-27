@@ -3,7 +3,7 @@
 
 Create or updates an AWS Lambda function from your Java8 jar.
 
-## Usage
+## Command Line Usage
 
 Create Goal:
 
@@ -17,8 +17,10 @@ Update Goal:
  mvn gscho.lambda:lambda-deploy:update -DaccessKey=<accessKey> -DsecretKey=<secretKey> -DzipFile=/path/to/my-lambda-0.0.1-SNAPSHOT.jar -DfunctionName=my-lambda
 ```
 
-Configuration parameters
-------------------------
+## pom.xml Usage
+TBD..
+
+## Configuration parameters
 
 | Parameter | Description | Required | Default |
 |-----------|-------------|----------|---------|
