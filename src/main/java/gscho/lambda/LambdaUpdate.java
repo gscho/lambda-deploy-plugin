@@ -15,6 +15,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
 import com.amazonaws.services.lambda.model.UpdateFunctionCodeRequest;
+import com.amazonaws.services.lambda.model.UpdateFunctionCodeResult;
 
 /**
  * This goal will update a lambda.
@@ -44,9 +45,10 @@ public class LambdaUpdate extends AbstractMojo {
 		AWSLambda lambdaClient = AWSLambdaClientBuilder.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(region).build();
 		try {
-			lambdaClient.updateFunctionCode(new UpdateFunctionCodeRequest() //
+			UpdateFunctionCodeResult result = lambdaClient.updateFunctionCode(new UpdateFunctionCodeRequest() //
 					.withFunctionName(functionName) //
 					.withPublish(true).withZipFile(ByteBuffer.wrap(Files.readAllBytes(Paths.get(zipFile)))));
+			getLog().info("Function ARN = " + result.getFunctionArn());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

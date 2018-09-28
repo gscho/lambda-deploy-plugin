@@ -18,13 +18,14 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
 import com.amazonaws.services.lambda.model.CreateFunctionRequest;
+import com.amazonaws.services.lambda.model.CreateFunctionResult;
 import com.amazonaws.services.lambda.model.Environment;
 import com.amazonaws.services.lambda.model.FunctionCode;
 import com.amazonaws.services.lambda.model.ResourceConflictException;
 
 /**
  * This goal will create a lambda.
- * 
+ *
  */
 @Mojo(name = "create")
 public class LambdaCreate extends AbstractMojo {
@@ -59,13 +60,14 @@ public class LambdaCreate extends AbstractMojo {
 		AWSLambda lambdaClient = AWSLambdaClientBuilder.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(region).build();
 		try {
-			lambdaClient.createFunction(new CreateFunctionRequest().withRole(roleArn) //
+			CreateFunctionResult result = lambdaClient.createFunction(new CreateFunctionRequest().withRole(roleArn) //
 					.withFunctionName(functionName) //
 					.withHandler(handler) //
 					.withEnvironment(new Environment()
 							.withVariables(Optional.ofNullable(environmentVars).orElse(new HashMap<String, String>()))) //
 					.withRuntime("java8") //
 					.withCode(new FunctionCode().withZipFile(ByteBuffer.wrap(Files.readAllBytes(Paths.get(zipFile))))));
+			getLog().info("Function ARN = " + result.getFunctionArn());
 		} catch (ResourceConflictException resourceException) {
 			getLog().info("Lambda Function already exists!");
 
