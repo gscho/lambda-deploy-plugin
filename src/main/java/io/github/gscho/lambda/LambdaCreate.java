@@ -1,4 +1,4 @@
-package gscho.lambda;
+package io.github.gscho.lambda;
 
 import java.nio.ByteBuffer;
 import java.nio.file.Files;

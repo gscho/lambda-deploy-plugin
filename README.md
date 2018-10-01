@@ -8,13 +8,13 @@ Create or updates an AWS Lambda function from your Java8 jar.
 Create Goal:
 
 ```
- mvn gscho.lambda:lambda-deploy:create -DaccessKey=<accessKey> -DsecretKey=<secretKey> -DzipFile=/path/to/my-lambda-0.0.1-SNAPSHOT.jar -DfunctionName=my-lambda -Dhandler=com.MyLambda::handleRequest -DroleArn=<roleArn>
+ mvn io.github.gscho:lambda-deploy:create -DaccessKey=<accessKey> -DsecretKey=<secretKey> -DzipFile=/path/to/my-lambda-0.0.1-SNAPSHOT.jar -DfunctionName=my-lambda -Dhandler=com.MyLambda::handleRequest -DroleArn=<roleArn>
 ```
 
 Update Goal:
 
 ```
- mvn gscho.lambda:lambda-deploy:update -DaccessKey=<accessKey> -DsecretKey=<secretKey> -DzipFile=/path/to/my-lambda-0.0.1-SNAPSHOT.jar -DfunctionName=my-lambda
+ mvn io.github.gscho:lambda-deploy:update -DaccessKey=<accessKey> -DsecretKey=<secretKey> -DzipFile=/path/to/my-lambda-0.0.1-SNAPSHOT.jar -DfunctionName=my-lambda
 ```
 
 ## pom.xml Usage
